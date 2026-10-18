@@ -16,6 +16,7 @@ Reprise d'is_acpl14 (Odoo 14).
         'stock',
         'sale_management',
         'account',
+        'l10n_fr_account',          # l10n_fr_siret de la société (en-tête des rapports)
 
         # Menus masqués (views/menu.xml)
         'mail',                     # Discussion
@@ -24,11 +25,10 @@ Reprise d'is_acpl14 (Odoo 14).
 ],
     'data' : [
         'security/res.groups.xml',
-        # Migration v20 : rapports désactivés pour réactiver d'abord les vues
-        # 'report/layouts.xml',
-        # 'report/conditions_generales_de_vente_templates.xml',
-        # 'report/sale_report_templates.xml',
-        # 'views/report_invoice.xml',
+        'report/layouts.xml',
+        'report/conditions_generales_de_vente_templates.xml',
+        'report/sale_report_templates.xml',
+        'views/report_invoice.xml',
         'views/account_move_view.xml',
         'views/sale_view.xml',
         'views/partner_view.xml',

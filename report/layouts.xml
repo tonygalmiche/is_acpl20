@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
     <template id="is_external_layout_standard" name="is_external_layout_standard" inherit_id="web.external_layout_standard">
-        <div  t-att-style="report_header_style" position="replace">
-            <div t-attf-class="header o_company_#{company.id}_layout" t-att-style="report_header_style">
+        <!-- Seul le tableau de l'en-tête est remplacé (et non le bloc header) : account_edi_ubl_cii
+             hérite aussi de ce tableau (//div[contains(@t-attf-class, 'header')]/table) -->
+        <xpath expr="//div[contains(@t-attf-class, ' header')]/table" position="replace">
+            <table class="table-borderless w-100"><tr><td>
                 <style>
                     .emetteur{
                         font-size:8pt;
@@ -11,33 +13,28 @@
                 <div class="row">
                     <div class="col-6 emetteur">
                         <img t-if="company.logo" t-att-src="image_data_uri(company.logo)" alt="Logo" style="max-height: 45px;"/><br />
-                        <span t-field="company.name"/> - <span t-field="res_company.street"/><br />
+                        <span t-field="company.name"/> - <span t-field="company.street"/><br />
                         <span>Siège social et établissement : </span><br />
-                        <span t-field="res_company.zip"/> <span t-field="res_company.city"/> - <span t-field="res_company.country_id.name"/>
+                        <span t-field="company.zip"/> <span t-field="company.city"/> - <span t-field="company.country_id.name"/>
                     </div>
-                    <div class="col-6 text-right emetteur">
+                    <div class="col-6 text-end emetteur">
                         SARL au Capital de 20000€<br />
-                        <t t-if="res_company.siret">Siret : <span t-field="res_company.siret"/><br /></t>
-                        <t t-if="res_company.ape">APE : <span t-field="res_company.ape"/><br /></t>
-                        <t t-if="res_company.company_registry">RCS : <span t-field="res_company.company_registry"/><br /></t>
-                        <t t-if="res_company.vat">TVA : <span t-field="res_company.vat"/><br /></t>
+                        <t t-if="company.l10n_fr_siret">Siret : <span t-field="company.l10n_fr_siret"/><br /></t>
+                        <t t-if="company.ape">APE : <span t-field="company.ape"/><br /></t>
+                        <t t-if="company.company_registry">RCS : <span t-field="company.company_registry"/><br /></t>
+                        <t t-if="company.vat">TVA : <span t-field="company.vat"/><br /></t>
                     </div>
                 </div>
-            </div>
-        </div>
-        <div  t-attf-class="footer o_standard_footer o_company_#{company.id}_layout" position="replace">
-            <div t-attf-class="footer o_standard_footer o_company_#{company.id}_layout">
+            </td></tr></table>
+        </xpath>
+        <xpath expr="//div[starts-with(@t-attf-class, 'footer ')]" position="replace">
+            <div t-attf-class="footer o_standard_footer o_company_#{company.id}_layout {{report_type != 'pdf' and 'mt-auto'}}">
                 <div class="text-center" style="border-top: 1px solid black;">
                         <t t-if="company.phone">Téléphone : <span t-field="company.phone"/> - </t>
                         <t t-if="company.email">Courriel :  <span t-field="company.email"/> - </t>
                         <t>Page : <span class="page"/>/<span class="topage"/></t>
                 </div>
             </div>
-        </div>
-        <div t-attf-class="article o_report_layout_standard o_company_#{company.id}_layout" position="replace">
-            <div t-attf-class="article o_report_layout_standard o_company_#{company.id}_layout"  t-att-data-oe-model="o and o._name" t-att-data-oe-id="o and o.id" t-att-data-oe-lang="o and o.env.context.get('lang')">
-                <t t-raw="0"/>
-            </div>
-        </div>
+        </xpath>
     </template>
 </odoo>
