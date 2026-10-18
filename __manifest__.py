@@ -17,6 +17,7 @@ Reprise d'is_acpl14 (Odoo 14).
         'sale_management',
         'account',
         'l10n_fr_account',          # l10n_fr_siret de la société (en-tête des rapports)
+        'is_theme_entreprise',      # couleur de l'entreprise (module générique)
 
         # Menus masqués (views/menu.xml)
         'mail',                     # Discussion
