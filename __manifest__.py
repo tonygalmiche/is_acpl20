@@ -18,8 +18,6 @@ Reprise d'is_acpl14 (Odoo 14).
         'account',
 ],
     'data' : [
-        'security/ir.access.csv',
-
         # Migration v20 : vues, menus et rapports désactivés pour installer d'abord les modèles
         # 'report/layouts.xml',
         # 'report/conditions_generales_de_vente_templates.xml',
@@ -28,7 +26,6 @@ Reprise d'is_acpl14 (Odoo 14).
         # 'views/account_move_view.xml',
         # 'views/sale_view.xml',
         # 'views/partner_view.xml',
-        # 'views/is_export_compta_view.xml',
         # 'views/product_view.xml',
         # 'views/menu.xml',
     ],
