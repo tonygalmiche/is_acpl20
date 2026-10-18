@@ -2,8 +2,7 @@
 from odoo import models,fields,api
 from odoo.tools.translate import _
 import datetime
-from odoo.exceptions import Warning
-import base64
+from odoo.exceptions import UserError
 
 
 class is_export_compta(models.Model):
@@ -27,14 +26,15 @@ class is_export_compta(models.Model):
     }
 
 
-    @api.model
-    def create(self, vals):
+    @api.model_create_multi
+    def create(self, vals_list):
         data_obj = self.env['ir.model.data']
         sequence_ids = data_obj.search([('name','=','is_export_compta_seq')])
         if sequence_ids:
             sequence_id = data_obj.browse(sequence_ids[0].id).res_id
-            vals['name'] = self.env['ir.sequence'].get_id(sequence_id, 'id')
-        res = super(is_export_compta, self).create(vals)
+            for vals in vals_list:
+                vals['name'] = self.env['ir.sequence'].browse(sequence_id).next_by_id()
+        res = super(is_export_compta, self).create(vals_list)
         return res
 
 
@@ -56,7 +56,7 @@ class is_export_compta(models.Model):
             email = user.email
             nom   = user.name
             if email==False:
-                raise Warning(u"Votre mail n'est pas renseigné !")
+                raise UserError(u"Votre mail n'est pas renseigné !")
             if email:
                 attachment_id = self.env['ir.attachment'].search([
                     ('res_model','=','is.export.compta'),
@@ -100,7 +100,7 @@ class is_export_compta(models.Model):
                 filter.append(('name', '<=', obj.num_fin))
             invoices = self.env['account.move'].search(filter, order="invoice_date,id")
             if len(invoices)==0:
-                raise Warning('Aucune facture à traiter')
+                raise UserError('Aucune facture à traiter')
             for invoice in invoices:
                 sql="""
                     SELECT  
@@ -205,7 +205,7 @@ class is_export_compta(models.Model):
                 'type':        'binary',
                 'res_model':   model,
                 'res_id':      obj.id,
-                'datas':       base64.encodebytes(r),
+                'raw':         r,
             }
             id = self.env['ir.attachment'].create(vals)
 
