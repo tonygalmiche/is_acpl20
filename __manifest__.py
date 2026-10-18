@@ -31,5 +31,6 @@ Reprise d'is_acpl14 (Odoo 14).
     ],
     'installable': True,
     'application': True,
+    'license': 'LGPL-3',
 }
 
