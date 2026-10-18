@@ -52,7 +52,7 @@ class is_export_compta(models.Model):
         </html>
         """
         for obj in self:
-            user  = self.env['res.users'].browse(self._uid)
+            user  = self.env['res.users'].browse(self.env.uid)
             email = user.email
             nom   = user.name
             if email==False:
@@ -77,7 +77,7 @@ class is_export_compta(models.Model):
 
 
     def action_export_compta(self):
-        cr=self._cr
+        cr=self.env.cr
         for obj in self:
             obj.ligne_ids.unlink()
             if obj.type_interface=='ventes':
