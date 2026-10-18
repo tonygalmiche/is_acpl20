@@ -19,7 +19,7 @@ Reprise d'is_acpl14 (Odoo 14).
         'purchase',
 ],
     'data' : [
-        'security/ir.model.access.csv',
+        'security/ir.access.csv',
 
         # Migration v20 : vues, menus et rapports désactivés pour installer d'abord les modèles
         # 'report/layouts.xml',
