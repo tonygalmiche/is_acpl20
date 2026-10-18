@@ -11,7 +11,7 @@
                 <field name="is_plaque_immatriculation"/>
                 <field name="is_kilometrage"/>
             </field>
-            <xpath expr="//notebook/page/field[@name='invoice_line_ids']/tree/field[@name='name']" position="after">
+            <xpath expr="//notebook/page/field[@name='invoice_line_ids']/list/column[@name='product_and_description']" position="after">
                 <field name="is_num_controle"/>
             </xpath>
         </field>
@@ -26,7 +26,7 @@
                 <field name="is_plaque_immatriculation" optional="show"/>
                 <field name="is_kilometrage"            optional="show"/>
             </xpath>
-            <field name="amount_total_signed" position="replace"> 
+            <field name="amount_total_in_currency_signed" position="replace">
                 <field name="amount_untaxed"      sum="Total"                      optional="show"/>
                 <field name="amount_total_signed" sum="Total" string="Montant TTC" optional="show"/>
             </field>

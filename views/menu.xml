@@ -5,8 +5,8 @@
     <record id="is_mail_template_action" model="ir.actions.act_window">
         <field name="name">Modèles de courriels</field>
         <field name="res_model">mail.template</field>
-        <field name="view_mode">tree,form</field>
-        <field name="domain">[('model_id.model','in',['account.invoice','purchase.order','sale.order'])]</field>
+        <field name="view_mode">list,form</field>
+        <field name="domain">[('model_id.model','in',['account.move','purchase.order','sale.order'])]</field>
     </record>
 
     <menuitem 
