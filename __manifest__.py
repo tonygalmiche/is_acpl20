@@ -16,8 +16,14 @@ Reprise d'is_acpl14 (Odoo 14).
         'stock',
         'sale_management',
         'account',
+
+        # Menus masqués (views/menu.xml)
+        'mail',                     # Discussion
+        'spreadsheet_dashboard',    # Tableaux de bord
+        'utm',                      # Tracker de liens
 ],
     'data' : [
+        'security/res.groups.xml',
         # Migration v20 : rapports désactivés pour réactiver d'abord les vues
         # 'report/layouts.xml',
         # 'report/conditions_generales_de_vente_templates.xml',
