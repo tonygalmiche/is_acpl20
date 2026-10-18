@@ -16,7 +16,6 @@ Reprise d'is_acpl14 (Odoo 14).
         'stock',
         'sale_management',
         'account',
-        'purchase',
 ],
     'data' : [
         'security/ir.access.csv',
