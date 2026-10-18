@@ -21,7 +21,8 @@
                         SARL au Capital de 20000€<br />
                         <t t-if="company.l10n_fr_siret">Siret : <span t-field="company.l10n_fr_siret"/><br /></t>
                         <t t-if="company.ape">APE : <span t-field="company.ape"/><br /></t>
-                        <t t-if="company.company_registry">RCS : <span t-field="company.company_registry"/><br /></t>
+                        <!-- company_registry supprimé en v20 : SIREN (déduit du SIRET) et ville du greffe, comme le texte de la v14 -->
+                        <t t-if="company.l10n_fr_siren">RCS : <span t-out="company.l10n_fr_siren"/> CHALON SUR SAONE<br /></t>
                         <t t-if="company.vat">TVA : <span t-field="company.vat"/><br /></t>
                     </div>
                 </div>
