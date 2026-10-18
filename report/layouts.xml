@@ -4,6 +4,9 @@
         <!-- Seul le tableau de l'en-tête est remplacé (et non le bloc header) : account_edi_ubl_cii
              hérite aussi de ce tableau (//div[contains(@t-attf-class, 'header')]/table) -->
         <xpath expr="//div[contains(@t-attf-class, ' header')]/table" position="replace">
+            <!-- Dans l'aperçu de « Configurer la mise en page », company est l'assistant base.document.layout (sans
+                 adresse, APE ni SIRET) : champs lus sur la société -->
+            <t t-set="societe" t-value="company.company_id if company._name == 'base.document.layout' else company"/>
             <table class="table-borderless w-100"><tr><td>
                 <style>
                     .emetteur{
@@ -13,26 +16,27 @@
                 <div class="row">
                     <div class="col-6 emetteur">
                         <img t-if="company.logo" t-att-src="image_data_uri(company.logo)" alt="Logo" style="max-height: 45px;"/><br />
-                        <span t-field="company.name"/> - <span t-field="company.street"/><br />
+                        <span t-field="societe.name"/> - <span t-field="societe.street"/><br />
                         <span>Siège social et établissement : </span><br />
-                        <span t-field="company.zip"/> <span t-field="company.city"/> - <span t-field="company.country_id.name"/>
+                        <span t-field="societe.zip"/> <span t-field="societe.city"/> - <span t-field="societe.country_id.name"/>
                     </div>
                     <div class="col-6 text-end emetteur">
                         SARL au Capital de 20000€<br />
-                        <t t-if="company.l10n_fr_siret">Siret : <span t-field="company.l10n_fr_siret"/><br /></t>
-                        <t t-if="company.ape">APE : <span t-field="company.ape"/><br /></t>
+                        <t t-if="societe.l10n_fr_siret">Siret : <span t-field="societe.l10n_fr_siret"/><br /></t>
+                        <t t-if="societe.ape">APE : <span t-field="societe.ape"/><br /></t>
                         <!-- company_registry supprimé en v20 : SIREN (déduit du SIRET) et ville du greffe, comme le texte de la v14 -->
-                        <t t-if="company.l10n_fr_siren">RCS : <span t-out="company.l10n_fr_siren"/> CHALON SUR SAONE<br /></t>
-                        <t t-if="company.vat">TVA : <span t-field="company.vat"/><br /></t>
+                        <t t-if="societe.l10n_fr_siren">RCS : <span t-out="societe.l10n_fr_siren"/> CHALON SUR SAONE<br /></t>
+                        <t t-if="societe.vat">TVA : <span t-field="societe.vat"/><br /></t>
                     </div>
                 </div>
             </td></tr></table>
         </xpath>
         <xpath expr="//div[starts-with(@t-attf-class, 'footer ')]" position="replace">
+            <t t-set="societe" t-value="company.company_id if company._name == 'base.document.layout' else company"/>
             <div t-attf-class="footer o_standard_footer o_company_#{company.id}_layout {{report_type != 'pdf' and 'mt-auto'}}">
                 <div class="text-center" style="border-top: 1px solid black;">
-                        <t t-if="company.phone">Téléphone : <span t-field="company.phone"/> - </t>
-                        <t t-if="company.email">Courriel :  <span t-field="company.email"/> - </t>
+                        <t t-if="societe.phone">Téléphone : <span t-field="societe.phone"/> - </t>
+                        <t t-if="societe.email">Courriel :  <span t-field="societe.email"/> - </t>
                         <t>Page : <span class="page"/>/<span class="topage"/></t>
                 </div>
             </div>
