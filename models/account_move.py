@@ -76,7 +76,6 @@ class AccountMove(models.Model):
 
 class AccountMoveLine(models.Model):
     _inherit = "account.move.line"
-    #_order = "invoice_id,id"
 
     is_num_controle = fields.Char(string="N° du contrôle")
 
