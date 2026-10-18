@@ -276,7 +276,7 @@
 
 
 
-            <t t-call="is_acpl14.conditions_generales_de_vente" />
+            <t t-call="is_acpl20.conditions_generales_de_vente" />
         </div>
     </xpath>
 </template>
