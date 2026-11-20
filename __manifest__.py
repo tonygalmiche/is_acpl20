@@ -36,6 +36,7 @@ Reprise d'is_acpl14 (Odoo 14).
         'views/partner_view.xml',
         'views/product_view.xml',
         'views/menu.xml',
+        'data/ir_module_module.xml',    # partner_autocomplete désinstallé
     ],
     'installable': True,
     'application': True,
