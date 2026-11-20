@@ -6,3 +6,8 @@
         padding-bottom: .25rem;
     }
 }
+
+// Quantité et unité sur une seule ligne (« 10,00 Unité(s) » passait sur 2 lignes dans le devis)
+td.o_td_quantity {
+    white-space: nowrap;
+}
