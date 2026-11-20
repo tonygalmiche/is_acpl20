@@ -16,6 +16,9 @@
         .cgv{
             font-size:7.5pt;
             text-align: justify;
+            /* 1.5 par défaut : le tableau (une seule ligne, jamais coupée par la v20) dépassait la page de quelques
+               mm avec le titre => titre seul sur une page et texte sur la suivante ; sur une page en v14 */
+            line-height: 1.4;
         }
         .cgv h2{
             font-size:9pt;
