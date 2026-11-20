@@ -13,6 +13,12 @@
             </t>
         </xpath>
 
+        <!-- En-tête du tableau des lignes répété sur chaque page (display: table-row-group retiré, comme le prévoit le
+             commentaire d'Odoo) : devis de plusieurs pages illisibles sinon (demande de Tony du 20/11/2026) -->
+        <xpath expr="//table[hasclass('o_main_table')]/thead" position="attributes">
+            <attribute name="style"/>
+        </xpath>
+
         <!-- Informations : masqués en v14 : expiration, incoterm, date de livraison, contact ; ajoutées : conditions
              de paiement -->
         <xpath expr="//div[@name='expiration_date']" position="attributes">
