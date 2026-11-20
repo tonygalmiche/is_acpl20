@@ -18,6 +18,13 @@
         <xpath expr="//table[hasclass('o_main_table')]/thead" position="attributes">
             <attribute name="style"/>
         </xpath>
+        <!-- Titres des colonnes Description et Quantité : vides dans le devis standard v20, présents en v14 -->
+        <xpath expr="//th[@name='th_description']" position="inside">
+            <span>Description</span>
+        </xpath>
+        <xpath expr="//th[@name='th_quantity']" position="inside">
+            <span>Quantité</span>
+        </xpath>
 
         <!-- Informations : masqués en v14 : expiration, incoterm, date de livraison, contact ; ajoutées : conditions
              de paiement -->
