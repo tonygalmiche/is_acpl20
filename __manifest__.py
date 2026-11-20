@@ -38,6 +38,11 @@ Reprise d'is_acpl14 (Odoo 14).
         'views/menu.xml',
         'data/ir_module_module.xml',    # partner_autocomplete désinstallé
     ],
+    'assets': {
+        'web.report_assets_common': [
+            'is_acpl20/static/src/scss/report.scss',    # lignes des tableaux moins hautes
+        ],
+    },
     'installable': True,
     'application': True,
     'license': 'LGPL-3',

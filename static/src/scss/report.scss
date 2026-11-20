@@ -1,0 +1,8 @@
+// Tableaux « Gras » des documents (devis, factures, BL) : marges des cellules réduites de moitié (0,5rem en haut et en
+// bas par défaut, comme le style « Clair ») pour gagner de la place en hauteur
+.o_table_bold table:not(.o_ignore_layout_styling) {
+    td, th {
+        padding-top: .25rem;
+        padding-bottom: .25rem;
+    }
+}
